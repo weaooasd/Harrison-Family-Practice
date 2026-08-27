@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harrison Family Practice | Whole-Person Care in Delaware</title>
+<meta name="description" content="Harrison Family Practice — Valerie Harrison, DNP. Family medicine, women's health, and behavioral health for Delaware families, delivered personally.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%230E2B24'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='55' fill='%23BE9350' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ============ TOKENS ============ */
+  :root{
+    --verdant-950:#0E2B24;
+    --verdant-800:#1B4438;
+    --verdant-700:#24594A;
+    --parchment:#F8F2E6;
+    --parchment-dim:#EFE6D2;
+    --brass:#BE9350;
+    --brass-light:#E0C088;
+    --ink:#221E17;
+    --ink-soft:#54503f;
+    --mist:#E6E8DA;
+    --cream:#FBF7EF;
+    --font-display:'Fraunces',serif;
+    --font-body:'Figtree',sans-serif;
+    --container:1180px;
+    --radius:14px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:var(--font-body);
+    color:var(--ink);
+    background:var(--parchment);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+  }
+  img,svg{display:block;max-width:100%;}
+  h1,h2,h3{font-family:var(--font-display);margin:0;font-weight:500;color:inherit;}
+  p{margin:0;}
+  a{color:inherit;text-decoration:none;}
+  ul{margin:0;padding:0;list-style:none;}
+  button{font-family:inherit;cursor:pointer;}
+  .container{max-width:var(--container);margin:0 auto;padding:0 28px;}
+  .eyebrow{
+    font-family:var(--font-body);
+    font-weight:700;
+    font-size:12.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--brass);display:inline-block;}
+  .eyebrow.center{justify-content:center;}
+  .section{padding:118px 0;}
+  .section-head{max-width:640px;margin-bottom:56px;}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+  .section-head h2{font-size:clamp(30px,4vw,44px);line-height:1.15;margin-top:14px;}
+  .section-head p{margin-top:18px;color:var(--ink-soft);font-size:17px;max-width:560px;}
+  .section-head.center p{margin-left:auto;margin-right:auto;}
+
+  /* reveal-on-scroll */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.is-visible{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ============ BUTTONS ============ */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    padding:15px 30px;border-radius:999px;font-weight:700;font-size:14.5px;
+    letter-spacing:.02em;border:1px solid transparent;white-space:nowrap;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+  }
+  .btn-brass{background:var(--brass);color:var(--verdant-950);}
+  .btn-brass:hover{background:var(--brass-light);transform:translateY(-2px);box-shadow:0 10px 24px rgba(190,147,80,.35);}
+  .btn-ghost-dark{border-color:rgba(251,247,239,.4);color:var(--cream);}
+  .btn-ghost-dark:hover{border-color:var(--cream);background:rgba(251,247,239,.08);transform:translateY(-2px);}
+  .btn-ghost-light{border-color:rgba(34,30,23,.25);color:var(--ink);}
+  .btn-ghost-light:hover{border-color:var(--ink);background:rgba(34,30,23,.05);}
+  .btn svg{width:16px;height:16px;flex-shrink:0;}
+
+  /* ============ NAV ============ */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:22px 0;
+    transition:background .35s ease, padding .35s ease, box-shadow .35s ease;
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;}
+  .nav.is-scrolled{background:rgba(14,43,36,.94);backdrop-filter:blur(10px);padding:14px 0;box-shadow:0 8px 30px rgba(0,0,0,.15);}
+  .brand{display:flex;flex-direction:column;line-height:1;}
+  .brand-name{font-family:var(--font-display);font-size:21px;color:var(--cream);letter-spacing:.02em;font-weight:600;}
+  .brand-sub{font-size:9.5px;letter-spacing:.22em;color:var(--brass);text-transform:uppercase;margin-top:5px;}
+  .nav-links{display:flex;align-items:center;gap:36px;}
+  .nav-links a{color:var(--cream);font-size:14.5px;font-weight:500;opacity:.88;transition:opacity .2s;position:relative;}
+  .nav-links a:hover{opacity:1;}
+  .nav-cta{display:flex;align-items:center;gap:22px;}
+  .nav-phone{color:var(--cream);font-size:14.5px;font-weight:600;display:flex;align-items:center;gap:7px;opacity:.9;}
+  .nav-phone svg{width:15px;height:15px;}
+  .nav-toggle{display:none;background:none;border:none;padding:6px;}
+  .nav-toggle span{display:block;width:24px;height:2px;background:var(--cream);margin:5px 0;transition:transform .25s, opacity .25s;}
+  .mobile-menu{
+    display:none;position:fixed;inset:0;background:var(--verdant-950);z-index:99;
+    flex-direction:column;align-items:center;justify-content:center;gap:30px;
+    opacity:0;pointer-events:none;transition:opacity .3s ease;
+  }
+  .mobile-menu.is-open{opacity:1;pointer-events:auto;}
+  .mobile-menu a{color:var(--cream);font-family:var(--font-display);font-size:26px;}
+  .mobile-menu .btn{margin-top:10px;}
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;
+    background:linear-gradient(165deg, var(--verdant-800) 0%, var(--verdant-950) 62%);
+    padding:190px 0 90px;
+    overflow:hidden;
+    color:var(--cream);
+  }
+  .hero-ornament{position:absolute;top:-40px;right:-60px;width:440px;opacity:.5;pointer-events:none;}
+  .hero-ornament svg{width:100%;height:auto;}
+  .hero-inner{position:relative;z-index:2;max-width:760px;}
+  .hero h1{font-size:clamp(40px,6vw,68px);line-height:1.08;margin-top:22px;color:var(--cream);letter-spacing:-.01em;}
+  .hero h1 em{color:var(--brass-light);font-style:italic;}
+  .hero-sub{margin-top:26px;font-size:18.5px;color:rgba(251,247,239,.82);max-width:600px;line-height:1.65;}
+  .hero-cta{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap;}
+  .hero-trust{
+    margin-top:64px;display:flex;flex-wrap:wrap;gap:14px 34px;align-items:center;
+    padding-top:28px;border-top:1px solid rgba(251,247,239,.18);
+  }
+  .trust-item{display:flex;align-items:center;gap:9px;font-size:13.5px;color:rgba(251,247,239,.78);font-weight:500;}
+  .stars{display:flex;gap:2px;color:var(--brass-light);}
+  .stars svg{width:14px;height:14px;fill:currentColor;}
+
+  /* ============ SERVICES ============ */
+  .services{background:var(--parchment);}
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .service-card{
+    background:var(--cream);border:1px solid rgba(34,30,23,.08);border-radius:var(--radius);
+    padding:36px 30px;transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+  }
+  .service-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(14,43,36,.1);border-color:transparent;}
+  .service-card.featured{background:linear-gradient(155deg,var(--verdant-800),var(--verdant-950));color:var(--cream);}
+  .service-icon{
+    width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    background:rgba(190,147,80,.14);color:var(--brass);margin-bottom:22px;
+  }
+  .service-card.featured .service-icon{background:rgba(224,192,136,.16);color:var(--brass-light);}
+  .service-icon svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+  .service-card h3{font-size:20px;font-weight:600;margin-bottom:11px;}
+  .service-card p{color:var(--ink-soft);font-size:15px;line-height:1.6;}
+  .service-card.featured p{color:rgba(251,247,239,.78);}
+
+  /* ============ INTERLUDE (signature) ============ */
+  .interlude{
+    background:var(--verdant-950);color:var(--cream);
+    padding:130px 0;position:relative;overflow:hidden;text-align:center;
+  }
+  .interlude-inner{max-width:840px;margin:0 auto;position:relative;z-index:2;padding:0 28px;}
+  .interlude::before{
+    content:"\201C";
+    font-family:var(--font-display);
+    position:absolute;top:-4%;left:50%;transform:translateX(-50%);
+    font-size:340px;color:var(--brass);opacity:.12;line-height:1;z-index:1;
+    pointer-events:none;
+  }
+  .interlude p.quote{
+    font-family:var(--font-display);font-style:italic;font-weight:400;
+    font-size:clamp(26px,4.2vw,42px);line-height:1.4;color:var(--cream);
+  }
+  .interlude .attribution{margin-top:30px;font-size:14.5px;color:var(--brass-light);font-weight:600;letter-spacing:.02em;}
+
+  /* ============ ABOUT ============ */
+  .about{background:var(--parchment);}
+  .about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:80px;align-items:center;}
+  .about-copy p.lede{font-size:18px;color:var(--ink-soft);margin-top:22px;line-height:1.75;}
+  .credential-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
+  .chip{
+    font-size:12.5px;font-weight:700;letter-spacing:.03em;color:var(--verdant-800);
+    background:rgba(27,68,56,.08);border:1px solid rgba(27,68,56,.16);
+    padding:9px 16px;border-radius:999px;
+  }
+  .about-pull{
+    margin-top:32px;padding:22px 26px;border-left:3px solid var(--brass);
+    background:var(--cream);border-radius:0 10px 10px 0;
+  }
+  .about-pull p{font-family:var(--font-display);font-style:italic;font-size:18px;color:var(--verdant-900,var(--verdant-950));}
+  .about-pull span{display:block;margin-top:10px;font-family:var(--font-body);font-style:normal;font-size:13px;font-weight:700;color:var(--brass);}
+
+  .medallion-wrap{display:flex;justify-content:center;}
+  .medallion{
+    width:340px;height:400px;border-radius:170px 170px 12px 12px;
+    background:linear-gradient(160deg,var(--verdant-700),var(--verdant-950));
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    position:relative;color:var(--cream);
+    box-shadow:0 30px 60px rgba(14,43,36,.25);
+  }
+  .medallion::before{
+    content:"";position:absolute;inset:16px;border:1px solid rgba(224,192,136,.45);
+    border-radius:154px 154px 4px 4px;
+  }
+  .medallion-mono{font-family:var(--font-display);font-style:italic;font-size:86px;color:var(--brass-light);}
+  .medallion-cap{margin-top:10px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(251,247,239,.65);}
+
+  /* ============ WHY CHOOSE ============ */
+  .why{background:var(--mist);}
+  .why-list{display:grid;grid-template-columns:1fr 1fr;gap:20px 40px;margin-top:10px;}
+  .why-item{display:flex;gap:16px;align-items:flex-start;padding:22px 0;border-top:1px solid rgba(34,30,23,.12);}
+  .why-mark{
+    flex-shrink:0;width:30px;height:30px;border-radius:50%;background:var(--brass);
+    display:flex;align-items:center;justify-content:center;color:var(--verdant-950);margin-top:2px;
+  }
+  .why-mark svg{width:15px;height:15px;stroke:currentColor;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+  .why-item p{font-size:16.5px;font-weight:500;color:var(--ink);}
+
+  /* ============ TESTIMONIALS ============ */
+  .testimonials{background:var(--parchment);}
+  .t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .t-card{background:var(--cream);border-radius:var(--radius);padding:30px 28px;border:1px solid rgba(34,30,23,.08);}
+  .t-card .stars{margin-bottom:16px;}
+  .t-card p.quote{font-size:15.5px;color:var(--ink);line-height:1.65;}
+  .t-card .who{margin-top:18px;font-size:13.5px;font-weight:700;color:var(--verdant-800);}
+
+  /* ============ NEW PATIENTS ============ */
+  .steps{background:var(--mist);}
+  .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;counter-reset:step;}
+  .step{position:relative;padding-top:8px;}
+  .step-num{
+    font-family:var(--font-display);font-size:50px;color:var(--brass);opacity:.55;line-height:1;
+  }
+  .step h3{margin-top:14px;font-size:20px;font-weight:600;}
+  .step p{margin-top:10px;color:var(--ink-soft);font-size:15px;}
+  .steps-note{
+    margin-top:52px;text-align:center;font-size:14.5px;color:var(--ink-soft);
+    padding-top:30px;border-top:1px solid rgba(34,30,23,.12);
+  }
+
+  /* ============ CONTACT ============ */
+  .contact{background:var(--verdant-950);color:var(--cream);}
+  .contact .eyebrow{color:var(--brass-light);}
+  .contact .eyebrow::before{background:var(--brass-light);}
+  .contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;}
+  .contact h2{color:var(--cream);font-size:clamp(28px,4vw,38px);margin-top:14px;}
+  .contact-info-item{display:flex;gap:16px;margin-top:28px;}
+  .contact-info-item svg{width:20px;height:20px;stroke:var(--brass-light);fill:none;stroke-width:1.6;flex-shrink:0;margin-top:2px;}
+  .contact-info-item h4{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--brass-light);margin-bottom:5px;font-weight:700;}
+  .contact-info-item p{font-size:16px;color:rgba(251,247,239,.88);line-height:1.6;}
+  .hours-table{margin-top:4px;font-size:15px;color:rgba(251,247,239,.88);}
+  .hours-table div{display:flex;justify-content:space-between;max-width:230px;padding:3px 0;}
+  .map-box{
+    margin-top:34px;height:170px;border-radius:12px;
+    background:
+      repeating-linear-gradient(0deg, rgba(224,192,136,.08) 0 1px, transparent 1px 32px),
+      repeating-linear-gradient(90deg, rgba(224,192,136,.08) 0 1px, transparent 1px 32px),
+      linear-gradient(160deg,var(--verdant-800),var(--verdant-950));
+    border:1px solid rgba(224,192,136,.25);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+    color:rgba(251,247,239,.55);font-size:12.5px;text-align:center;padding:16px;
+  }
+  .map-box svg{width:26px;height:26px;stroke:var(--brass-light);fill:none;stroke-width:1.5;}
+
+  .form-card{background:var(--cream);border-radius:18px;padding:44px;box-shadow:0 30px 60px rgba(0,0,0,.25);}
+  .form-card h3{color:var(--ink);font-size:22px;font-weight:600;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px;}
+  .field{display:flex;flex-direction:column;gap:7px;}
+  .field.full{grid-column:1/-1;}
+  .field label{font-size:12.5px;font-weight:700;letter-spacing:.03em;color:var(--ink-soft);text-transform:uppercase;}
+  .field input,.field select,.field textarea{
+    font-family:var(--font-body);font-size:15px;padding:12px 14px;border-radius:9px;
+    border:1px solid rgba(34,30,23,.18);background:var(--parchment);color:var(--ink);
+  }
+  .field textarea{resize:vertical;min-height:90px;}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--verdant-700);outline-offset:1px;}
+  .form-card .btn{width:100%;margin-top:24px;padding:16px;}
+  .form-note{margin-top:14px;font-size:12.5px;color:var(--ink-soft);text-align:center;}
+  .form-status{margin-top:14px;font-size:14px;text-align:center;color:var(--verdant-800);font-weight:600;display:none;}
+  .form-status.is-shown{display:block;}
+
+  /* ============ FOOTER ============ */
+  footer{background:#0A211C;color:rgba(251,247,239,.75);padding:70px 0 26px;}
+  .footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:50px;padding-bottom:46px;border-bottom:1px solid rgba(251,247,239,.1);}
+  .footer-brand .brand-name{color:var(--cream);}
+  .footer-tag{margin-top:16px;font-family:var(--font-display);font-style:italic;font-size:17px;color:var(--brass-light);max-width:260px;}
+  .footer-col h5{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--brass);margin-bottom:18px;font-weight:700;}
+  .footer-col a,.footer-col p{display:block;font-size:14.5px;margin-bottom:11px;color:rgba(251,247,239,.75);}
+  .footer-col a:hover{color:var(--cream);}
+  .footer-bottom{padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:13px;color:rgba(251,247,239,.5);}
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:980px){
+    .nav-links{display:none;}
+    .nav-toggle{display:block;}
+    .mobile-menu{display:flex;}
+    .services-grid{grid-template-columns:1fr 1fr;}
+    .t-grid{grid-template-columns:1fr 1fr;}
+    .steps-grid{grid-template-columns:1fr;gap:44px;}
+    .about-grid{grid-template-columns:1fr;gap:50px;}
+    .medallion-wrap{order:-1;}
+    .why-list{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;gap:50px;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .hero{padding-top:150px;}
+  }
+  @media (max-width:640px){
+    .section{padding:80px 0;}
+    .services-grid{grid-template-columns:1fr;}
+    .t-grid{grid-template-columns:1fr;}
+    .form-row{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;gap:36px;}
+    .nav-phone{display:none;}
+    .hero-cta .btn{width:100%;}
+    .form-card{padding:28px 22px;}
+    .medallion{width:260px;height:300px;}
+    .medallion-mono{font-size:60px;}
+  }
+
+  :focus-visible{outline:2px solid var(--brass);outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="siteNav">
+  <div class="container nav-inner">
+    <a href="#top" class="brand">
+      <span class="brand-name">Harrison Family Practice</span>
+      <span class="brand-sub">Valerie Harrison, DNP</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#stories">Patient Stories</a>
+      <a href="#new-patients">New Patients</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="tel:13029566986" class="nav-phone">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        (302) 956-6986
+      </a>
+      <a href="#contact" class="btn btn-brass">Book Your Visit</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#stories">Patient Stories</a>
+  <a href="#new-patients">New Patients</a>
+  <a href="#contact">Contact</a>
+  <a href="#contact" class="btn btn-brass">Book Your Visit</a>
+</div>
+
+<div id="top"></div>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-ornament" aria-hidden="true">
+    <svg viewBox="0 0 400 400" fill="none" stroke="#E0C088" stroke-width="1">
+      <path d="M380 10C330 40 300 90 300 150c60-10 110-45 130-100" opacity=".7"/>
+      <path d="M300 150c-40 30-60 75-55 130 55-15 95-55 105-115" opacity=".55"/>
+      <path d="M245 280c-30 20-45 55-40 95 40-12 70-42 78-85" opacity=".4"/>
+    </svg>
+  </div>
+  <div class="container hero-inner">
+    <p class="eyebrow">Family Medicine &middot; Women's Health &middot; Behavioral Health</p>
+    <h1>Where You're <em>Known</em>, Not Just Treated</h1>
+    <p class="hero-sub">Delaware families have trusted Valerie Harrison, DNP for years of unhurried, whole-person care — the kind where someone actually listens, remembers your name, and treats you like more than a chart number.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-brass">Book Your Visit</a>
+      <a href="tel:13029566986" class="btn btn-ghost-dark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call (302) 956-6986
+      </a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item">
+        <span class="stars" aria-hidden="true">
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 6.2 6.7.5-5.1 4.4 1.6 6.5L10 15.2 4.2 18.6l1.6-6.5-5.1-4.4 6.7-.5z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 6.2 6.7.5-5.1 4.4 1.6 6.5L10 15.2 4.2 18.6l1.6-6.5-5.1-4.4 6.7-.5z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 6.2 6.7.5-5.1 4.4 1.6 6.5L10 15.2 4.2 18.6l1.6-6.5-5.1-4.4 6.7-.5z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 6.2 6.7.5-5.1 4.4 1.6 6.5L10 15.2 4.2 18.6l1.6-6.5-5.1-4.4 6.7-.5z"/></svg>
+          <svg viewBox="0 0 20 20"><path d="M10 1l2.6 6.2 6.7.5-5.1 4.4 1.6 6.5L10 15.2 4.2 18.6l1.6-6.5-5.1-4.4 6.7-.5z"/></svg>
+        </span>
+        Loved by patients across Delaware
+      </div>
+      <div class="trust-item">Now welcoming new patients</div>
+      <div class="trust-item">Mon–Thu &middot; 8am–6pm</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="section services" id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">How We Care For You</p>
+      <h2>Comprehensive Care, Delivered Personally</h2>
+      <p>One team, one chart, every stage of life — because your mental health and physical health were never really separate.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card featured reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 12L12 5l8 7"/><path d="M6 10v9h5v-5h2v5h5v-9"/></svg>
+        </div>
+        <h3>Family &amp; Primary Care</h3>
+        <p>From first colds to yearly physicals, we care for every generation of your household — kids, parents, and grandparents alike.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="2.4"/><circle cx="17" cy="12" r="2.4"/><circle cx="12" cy="17" r="2.4"/><circle cx="7" cy="12" r="2.4"/><circle cx="12" cy="12" r="1.6"/></svg>
+        </div>
+        <h3>Women's Health</h3>
+        <p>Attentive, unhurried exams — the kind of visit patients tell us they didn't think was possible anymore.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 21V10"/><path d="M12 10c0-4 3-7 7-7 0 4-3 7-7 7z"/><path d="M12 10c0-4-3-7-7-7 0 4 3 7 7 7z"/></svg>
+        </div>
+        <h3>Mental &amp; Behavioral Health</h3>
+        <p>Because emotional health is health. Ongoing visits and medication management, woven into your regular care — never treated as separate.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 5-3 8-7 9-4-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h3>Preventive Care &amp; Physicals</h3>
+        <p>Annual wellness exams, screenings, and vaccinations that catch small things before they become big ones.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg>
+        </div>
+        <h3>Chronic Condition Management</h3>
+        <p>Steady, coordinated care for diabetes, hypertension, and other conditions that need a long view.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v5l4 2"/></svg>
+        </div>
+        <h3>Acute &amp; Sick Visits</h3>
+        <p>Feeling unwell? We make room — because a sick day shouldn't mean a week of waiting.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INTERLUDE 1 ============ -->
+<section class="interlude">
+  <div class="interlude-inner reveal">
+    <p class="quote">Here, you're a whole person — not a chart number lost in some larger system.</p>
+    <p class="attribution">— Natalie T., long-time patient</p>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="section about" id="about">
+  <div class="container about-grid">
+    <div class="about-copy reveal">
+      <p class="eyebrow">Meet Your Provider</p>
+      <h2>Valerie Harrison, DNP</h2>
+      <p class="lede">Valerie Harrison built this practice on a simple belief — that good medicine starts with truly listening. Patients describe her as warm, thorough, and quick to treat the whole person, mind and body together, rather than rushing to the next appointment. Many have followed her from practice to practice over the years — the kind of loyalty you can't manufacture, only earn.</p>
+      <div class="credential-chips">
+        <span class="chip">Doctor of Nursing Practice (DNP)</span>
+        <span class="chip">Family Medicine</span>
+        <span class="chip">Women's Health</span>
+        <span class="chip">Behavioral Health</span>
+      </div>
+      <div class="about-pull">
+        <p>"She has seen me at my worst and still helped me."</p>
+        <span>ANDREW M., PATIENT</span>
+      </div>
+    </div>
+    <div class="medallion-wrap reveal">
+      <!-- Swap this monogram medallion for a real portrait of Valerie Harrison when available -->
+      <div class="medallion">
+        <span class="medallion-mono">VH</span>
+        <span class="medallion-cap">Doctor of Nursing Practice</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY CHOOSE US ============ -->
+<section class="section why">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">The Harrison Difference</p>
+      <h2>Why Families Stay for Years, Not Just Visits</h2>
+    </div>
+    <div class="why-list">
+      <div class="why-item reveal">
+        <span class="why-mark"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span>
+        <p>We treat the whole person — physical and mental health, together, always.</p>
+      </div>
+      <div class="why-item reveal">
+        <span class="why-mark"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span>
+        <p>Visits that don't feel rushed. Ever.</p>
+      </div>
+      <div class="why-item reveal">
+        <span class="why-mark"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span>
+        <p>Care for every generation in your family, from pediatric checkups to senior care.</p>
+      </div>
+      <div class="why-item reveal">
+        <span class="why-mark"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span>
+        <p>A team so trusted, patients follow us across town and across the years.</p>
+      </div>
+      <div class="why-item reveal">
+        <span class="why-mark"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span>
+        <p>Clear communication — calls returned and results explained, every time.</p>
+      </div>
+      <div class="why-item reveal">
+        <span class="why-mark"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span>
+        <p>A warm, familiar team — patients ask for by name, again and again.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INTERLUDE 2 ============ -->
+<section class="interlude">
+  <div class="interlude-inner reveal">
+    <p class="quote">She makes me feel like a human being — like I actually matter.</p>
+    <p class="attribution">— Melissa T., patient</p>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="section testimonials" id="stories">
+  <div class="container">
+    <div class="section-head center reveal">
+      <p class="eyebrow center">Patient Stories</p>
+      <h2>Don't Just Take Our Word For It</h2>
+    </div>
+    <div class="t-grid">
+      <div class="t-card reveal">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <p class="quote">"Best care I've had. She treats my mental and physical health together, and her whole staff is a joy to work with."</p>
+        <p class="who">Amber F.</p>
+      </div>
+      <div class="t-card reveal">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <p class="quote">"She's seen me at my very worst and never once stopped helping. Her team is just as caring as she is."</p>
+        <p class="who">Andrew M.</p>
+      </div>
+      <div class="t-card reveal">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <p class="quote">"I switched doctors just to become her patient. Thorough, kind, and she actually calls back quickly."</p>
+        <p class="who">Rachael E.</p>
+      </div>
+      <div class="t-card reveal">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <p class="quote">"The best medical practice I've found in over a decade in Delaware — professional, courteous, and genuinely listens."</p>
+        <p class="who">Peralee K.</p>
+      </div>
+      <div class="t-card reveal">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <p class="quote">"The whole team is wonderful, especially Valerie — she always goes the extra mile for us."</p>
+        <p class="who">Ashley H.</p>
+      </div>
+      <div class="t-card reveal">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <p class="quote">"I followed her from another practice years ago, and I'll keep following her wherever she goes."</p>
+        <p class="who">Danielle R.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEW PATIENTS ============ -->
+<section class="section steps" id="new-patients">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Becoming a Patient</p>
+      <h2>Getting Started Is Simple</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step reveal">
+        <span class="step-num">01</span>
+        <h3>Reach Out</h3>
+        <p>Call our office or send a request below, and our team will find a time that works for you.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">02</span>
+        <h3>Your First Visit</h3>
+        <p>Bring a photo ID, insurance card, and current medications. We'll spend real time on your history — not just your symptoms.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">03</span>
+        <h3>Ongoing Care</h3>
+        <p>From there, you're family. Same team, same attention, every single visit.</p>
+      </div>
+    </div>
+    <p class="steps-note">We accept most major insurance plans — call our office to confirm your coverage.</p>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section contact" id="contact">
+  <div class="container contact-grid">
+    <div class="reveal">
+      <p class="eyebrow">Visit Us</p>
+      <h2>We'd Love to See You</h2>
+
+      <div class="contact-info-item">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div>
+          <h4>Address</h4>
+          <p>18119 Sussex Hwy #1<br>Bridgeville, DE 19933</p>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <div>
+          <h4>Phone</h4>
+          <p><a href="tel:13029566986">(302) 956-6986</a></p>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <div>
+          <h4>Hours</h4>
+          <div class="hours-table">
+            <div><span>Monday – Thursday</span><span>8:00am – 6:00pm</span></div>
+            <div><span>Friday – Sunday</span><span>Closed</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Once you have a confirmed street address, replace this box with a real
+           Google Maps embed, e.g.:
+           <iframe src="https://www.google.com/maps/embed?pb=..." width="100%" height="220" style="border:0" loading="lazy"></iframe> -->
+      <div class="map-box">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5425.548866067998!2d-75.59425749529282!3d38.7382974007712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b8f3a152816025%3A0xca80355e1f97cb02!2sHarrison%20family%20Practice%20Inc.%20Valerie%20Harrison%20DNP!5e1!3m2!1sen!2sus!4v1787801127836!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="form-card">
+        <h3>Request an Appointment</h3>
+        <form id="apptForm">
+          <div class="form-row">
+            <div class="field">
+              <label for="fname">Full name</label>
+              <input type="text" id="fname" name="name" required>
+            </div>
+            <div class="field">
+              <label for="fphone">Phone</label>
+              <input type="tel" id="fphone" name="phone" required>
+            </div>
+            <div class="field">
+              <label for="femail">Email</label>
+              <input type="email" id="femail" name="email">
+            </div>
+            <div class="field">
+              <label for="fday">Preferred day</label>
+              <select id="fday" name="day">
+                <option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="freason">Reason for visit</label>
+              <textarea id="freason" name="reason" placeholder="Tell us briefly what brings you in"></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-brass">Send Request</button>
+          <p class="form-note">Our team will follow up as soon as we can.</p>
+          <p class="form-status" id="formStatus">Thanks! Your default email app should now be open with your request ready to send.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="brand-name">Harrison Family Practice</span>
+        <p class="footer-tag">Where you're known, not just treated.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Explore</h5>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#stories">Patient Stories</a>
+        <a href="#new-patients">New Patients</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h5>Visit</h5>
+        <p>18119 Sussex Hwy #1<br>Bridgeville, DE 19933</p>
+        <a href="tel:13029566986">(302) 956-6986</a>
+        <p>Mon–Thu, 8am–6pm</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Harrison Family Practice Inc. All rights reserved.</span>
+      <span>Valerie Harrison, DNP &middot; Delaware</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Sticky nav background on scroll
+  const nav = document.getElementById('siteNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('is-scrolled', window.scrollY > 40);
+  });
+
+  // Mobile menu toggle
+  const navToggle = document.getElementById('navToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  navToggle.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('is-open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.remove('is-open');
+    navToggle.setAttribute('aria-expanded', false);
+  }));
+
+  // Scroll-reveal animation
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealEls = document.querySelectorAll('.reveal');
+  if (prefersReduced) {
+    revealEls.forEach(el => el.classList.add('is-visible'));
+  } else if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('is-visible'));
+  }
+
+  // Appointment form: no backend yet, so this opens a pre-filled email as a
+  // placeholder. Replace with a real form handler (e.g. your EHR's scheduling
+  // link, or a service like Formspree) when you're ready to go live.
+  const apptForm = document.getElementById('apptForm');
+  const formStatus = document.getElementById('formStatus');
+  apptForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(apptForm);
+    const subject = encodeURIComponent('Appointment Request — ' + data.get('name'));
+    const body = encodeURIComponent(
+      'Name: ' + data.get('name') + '\n' +
+      'Phone: ' + data.get('phone') + '\n' +
+      'Email: ' + data.get('email') + '\n' +
+      'Preferred day: ' + data.get('day') + '\n' +
+      'Reason for visit: ' + data.get('reason')
+    );
+    window.location.href = `mailto:info@harrisonfamilypractice.com?subject=${subject}&body=${body}`;
+    formStatus.classList.add('is-shown');
+  });
+</script>
+
+</body>
+</html>
